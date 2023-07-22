@@ -1,12 +1,7 @@
 const abi = [
   {
     inputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '_verifier',
-        type: 'address',
-      },
-      { internalType: 'contract IERC20', name: '_usdc', type: 'address' },
+      { internalType: 'contract IERC20', name: '_ageuro', type: 'address' },
       {
         internalType: 'contract ISwapRouter',
         name: '_swapRouter',
@@ -14,16 +9,16 @@ const abi = [
       },
       { internalType: 'contract IQuoterV2', name: '_quoter', type: 'address' },
       { internalType: 'uint24', name: 'euroUsdcPoolFee', type: 'uint24' },
-      { internalType: 'contract IERC20', name: '_euro', type: 'address' },
+      { internalType: 'contract IERC20', name: '_usdc', type: 'address' },
     ],
     stateMutability: 'nonpayable',
     type: 'constructor',
   },
   {
     inputs: [],
-    name: 'approveEuroToUniswap',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    name: 'ageuro',
+    outputs: [{ internalType: 'contract IERC20', name: '', type: 'address' }],
+    stateMutability: 'view',
     type: 'function',
   },
   {
@@ -51,14 +46,14 @@ const abi = [
           { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
           { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
         ],
-        internalType: 'struct IPool.Proof',
+        internalType: 'struct IPool.ZKProof',
         name: 'proof',
         type: 'tuple',
       },
       { internalType: 'uint256[31]', name: 'inputs', type: 'uint256[31]' },
       {
         internalType: 'string',
-        name: 'xBorderRecieverAddress',
+        name: 'xBorderReceiverAddress',
         type: 'string',
       },
     ],
@@ -75,7 +70,7 @@ const abi = [
           { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
           { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
         ],
-        internalType: 'struct IPool.Proof',
+        internalType: 'struct IPool.ZKProof',
         name: 'proof',
         type: 'tuple',
       },
@@ -113,20 +108,6 @@ const abi = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'euro',
-    outputs: [{ internalType: 'contract IERC20', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'euroPool',
-    outputs: [{ internalType: 'contract IPool', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
     inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'getOrder',
     outputs: [
@@ -156,7 +137,7 @@ const abi = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: 'usdcAmount', type: 'uint256' }],
+    inputs: [{ internalType: 'uint256', name: 'euroAmount', type: 'uint256' }],
     name: 'matchOrder',
     outputs: [
       { internalType: 'uint256', name: 'orderId', type: 'uint256' },
@@ -204,6 +185,13 @@ const abi = [
     type: 'function',
   },
   {
+    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    name: 'revolutServerKeys',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [{ internalType: 'string', name: 's', type: 'string' }],
     name: 'stringToUint256',
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
@@ -221,18 +209,9 @@ const abi = [
   },
   {
     inputs: [
-      { internalType: 'contract IERC20', name: '_euro', type: 'address' },
+      { internalType: 'contract IERC20', name: '_ageuro', type: 'address' },
     ],
     name: 'updateEuro',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
-      { internalType: 'contract IPool', name: '_euroPool', type: 'address' },
-    ],
-    name: 'updateEuroPool',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -279,13 +258,9 @@ const abi = [
   },
   {
     inputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '_verifier',
-        type: 'address',
-      },
+      { internalType: 'contract IPool', name: '_usdcPool', type: 'address' },
     ],
-    name: 'updateVerifier',
+    name: 'updateUsdcPool',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -305,22 +280,21 @@ const abi = [
     type: 'function',
   },
   {
-    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    name: 'venmoMailServerKeys',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    inputs: [],
+    name: 'usdcPool',
+    outputs: [{ internalType: 'contract IPool', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'verifier',
-    outputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '',
-        type: 'address',
-      },
+    inputs: [
+      { internalType: 'uint256[2]', name: 'a', type: 'uint256[2]' },
+      { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
+      { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
+      { internalType: 'uint256[31]', name: 'input', type: 'uint256[31]' },
     ],
+    name: 'verifyProof',
+    outputs: [{ internalType: 'bool', name: 'r', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
   },

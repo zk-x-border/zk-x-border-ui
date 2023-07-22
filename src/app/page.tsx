@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className='mt-2 text-center text-lg font-bold text-white'>
               Cross-border, zero-knowledge money transfer for cheap.
               <br />
-              No crypto required.
+              No fees. No crypto wallets.
             </div>
             <ButtonLink
               className='mt-6 rounded-lg border-none bg-gradient-to-r from-yellow-400 to-yellow-500 px-10 py-4 text-white'
@@ -64,7 +64,7 @@ export default function HomePage() {
             </ButtonLink>
           </div>
         </div>
-        <div className='grid gap-24 px-48 md:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-24 px-8 lg:grid-cols-2 lg:px-48'>
           <div className='flex flex-col items-center justify-center rounded-lg border border-yellow-300 bg-white/10 p-4'>
             <div className='mb-2 inline-flex min-h-[200px] items-center rounded-md bg-transparent px-2.5 py-0.5 text-xs font-medium'>
               <RevolutLogo className='w-24' />

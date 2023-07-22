@@ -2,8 +2,6 @@
 
 import React, { ChangeEvent, useCallback, useState } from 'react';
 
-import { usePoolContracts } from '@/hooks/usePoolContracts';
-
 import Navbar from '@/components/NavBar';
 import PayFormStep1 from '@/components/payForm/PayFormStep1';
 import PayFormStep2 from '@/components/payForm/PayFormStep2';
@@ -29,6 +27,7 @@ export default function PayPage() {
     string | undefined
   >(undefined);
   const [amount, setAmount] = useState<string | undefined>(undefined);
+  const [offRamperId, setOffRamperId] = useState<string | undefined>(undefined);
 
   const onChangeSenderType = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
@@ -95,6 +94,7 @@ export default function PayPage() {
             onChangeSenderIdentifier={onChangeSenderIdentifier}
             onChangeReceiverIdentifier={onChangeReceiverIdentifier}
             onChangeAmount={onChangeAmount}
+            setOffRamperId={setOffRamperId}
             onClickNext={() => setCurrentPage((prevPage) => prevPage + 1)}
           />
         );
@@ -103,6 +103,7 @@ export default function PayPage() {
           <PayFormStep2
             senderType={senderType}
             senderCurrency={senderCurrency}
+            offRamperId={offRamperId || ''}
             amount={amount}
             onClickNext={() => setCurrentPage((prevPage) => prevPage + 1)}
           />
@@ -121,6 +122,7 @@ export default function PayPage() {
   }, [
     amount,
     currentPage,
+    offRamperId,
     onChangeAmount,
     onChangeReceiverCurrency,
     onChangeReceiverIdentifier,
@@ -135,11 +137,6 @@ export default function PayPage() {
     senderIdentifier,
     senderType,
   ]);
-
-  const { usdcPoolContract } = usePoolContracts();
-
-  // eslint-disable-next-line no-console
-  console.log(usdcPoolContract);
 
   return (
     <main className='bg-[#020202]'>

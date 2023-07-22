@@ -9,7 +9,6 @@ import NavItem from './NavItem';
 import EasternUnionLogo from '~/svg/EasternUnionLogo.svg';
 
 const MENU_LIST = [
-  { text: 'Home', href: '/' },
   { text: 'Pay', href: '/pay' },
   { text: 'Status', href: '/status' },
   { text: 'Trade', href: '/trade' },

@@ -1,6 +1,9 @@
 import clsx from 'clsx';
+import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import { number, object, string } from 'yup';
+
+import { usePoolContracts } from '@/hooks/usePoolContracts';
 
 import Arrow from '~/svg/Arrow.svg';
 
@@ -15,7 +18,7 @@ const transferSchema = object({
     .required()
     .typeError('Must be a number')
     .required('This field is required')
-    .min(0, 'Must be greater than or equal to 0')
+    .min(0.01, 'Must be greater than or equal to 0.01')
     .max(10000, 'Must be less than or equal to 10,000')
     .test(
       'is-float-with-2-decimal-digits',
@@ -46,6 +49,7 @@ export type PayFormStep1Props = {
   ) => void;
   onChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClickNext: () => void;
+  setOffRamperId: (offRamperId: string) => void;
 };
 
 const PayFormStep1: React.FC<PayFormStep1Props> = ({
@@ -64,9 +68,11 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
   onChangeReceiverIdentifier,
   onChangeAmount,
   onClickNext,
+  setOffRamperId,
 }) => {
   const [valid, setValid] = useState(false);
-  const [amountEstimate, _setAmountEstimate] = useState(0);
+  const [amountEstimate, setAmountEstimate] = useState('0');
+  const { usdcPoolContract } = usePoolContracts();
 
   useEffect(() => {
     const validate = async () => {
@@ -91,6 +97,40 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
     senderIdentifier,
     receiverIdentifier,
     amount,
+  ]);
+
+  useEffect(() => {
+    const fetchOrderDetails = async () => {
+      if (
+        senderCurrency === 'USD' &&
+        receiverCurrency === 'EUR' &&
+        Number(amount) &&
+        Number(amount) > 0
+      ) {
+        const response = await usdcPoolContract.matchOrder.staticCall(
+          (ethers.toBigInt(
+            Math.round(Number(Number(amount).toFixed(2)) * 100) || 0
+          ) *
+            ethers.toBigInt('1000000')) /
+            ethers.toBigInt('100')
+        );
+        const amountEstimate = (
+          (ethers.toBigInt(response[2]) * ethers.toBigInt(100)) /
+          ethers.toBigInt('1000000000000000000')
+        ).toString();
+
+        setOffRamperId(response[1]);
+        setAmountEstimate((Number(amountEstimate) / 100.0).toFixed(2));
+      }
+    };
+
+    fetchOrderDetails();
+  }, [
+    amount,
+    receiverCurrency,
+    senderCurrency,
+    setOffRamperId,
+    usdcPoolContract,
   ]);
 
   return (
@@ -129,8 +169,9 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
           <input
             className='w-full rounded-md border border-gray-300 p-2'
             onChange={onChangeAmount}
-            type='number'
             value={amount}
+            step='.01'
+            pattern='^\d*(\.\d{0,2})?$'
             placeholder='i.e. 12.34'
           />
         </div>

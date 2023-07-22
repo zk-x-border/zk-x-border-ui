@@ -2,9 +2,6 @@ import React from 'react';
 
 export type Transaction = {
   id: number;
-  date: string;
-  from: string;
-  to: string;
   account: string;
   amount: number;
   currency: string;
@@ -44,24 +41,6 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                     scope='col'
                     className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white'
                   >
-                    Date
-                  </th>
-                  <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white'
-                  >
-                    From
-                  </th>
-                  <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white'
-                  >
-                    To
-                  </th>
-                  <th
-                    scope='col'
-                    className='px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-white'
-                  >
                     Account
                   </th>
                   <th
@@ -87,25 +66,16 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
               <tbody className='divide-y divide-gray-200 bg-white/20'>
                 {transactions.map((transaction) => (
                   <tr key={transaction.id}>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
-                      {transaction.date}
+                    <td className='whitespace-nowrap px-6 py-4 text-left text-sm text-white'>
+                      {transaction.account || '--'}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
-                      {transaction.from}
+                    <td className='whitespace-nowrap px-6 py-4 text-left text-sm text-white'>
+                      {transaction.amount || '--'}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
-                      {transaction.to}
-                    </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
-                      {transaction.account}
-                    </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
-                      {transaction.amount}
-                    </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
+                    <td className='whitespace-nowrap px-6 py-4 text-left text-sm text-white'>
                       {transaction.currency}
                     </td>
-                    <td className='whitespace-nowrap px-6 py-4 text-sm text-white'>
+                    <td className='whitespace-nowrap px-6 py-4 text-left text-sm text-white'>
                       {transaction.status}
                     </td>
                   </tr>
