@@ -6,9 +6,9 @@ import EuroPoolABI from '@/contractAbis/euroPool';
 import USDCPoolABI from '@/contractAbis/usdcPool';
 
 export const EURO_POOL_CONTRACT_ADDRESS =
-  '0x5EAF88cB9C620A14Cc923eDf60fD218717451D46';
+  '0xfbb2ae302a460730685f74f262d1e3256033d625';
 export const USDC_POOL_CONTRACT_ADDRESS =
-  '0xcB540EbC04fF963d5F187219748895D1045E4Cc1';
+  '0x18c54cfb3bc9480e9dab7feb5d319e6460d40627';
 
 export const usePoolContracts = () => {
   const { provider } = useInfuraProvider();

@@ -1,11 +1,6 @@
 const abi = [
   {
     inputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '_verifier',
-        type: 'address',
-      },
       { internalType: 'contract IERC20', name: '_usdc', type: 'address' },
       {
         internalType: 'contract ISwapRouter',
@@ -18,13 +13,6 @@ const abi = [
     ],
     stateMutability: 'nonpayable',
     type: 'constructor',
-  },
-  {
-    inputs: [],
-    name: 'approveEuroToUniswap',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
   },
   {
     inputs: [
@@ -51,14 +39,14 @@ const abi = [
           { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
           { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
         ],
-        internalType: 'struct IPool.Proof',
+        internalType: 'struct IPool.ZKProof',
         name: 'proof',
         type: 'tuple',
       },
       { internalType: 'uint256[31]', name: 'inputs', type: 'uint256[31]' },
       {
         internalType: 'string',
-        name: 'xBorderRecieverAddress',
+        name: 'xBorderReceiverAddress',
         type: 'string',
       },
     ],
@@ -75,7 +63,7 @@ const abi = [
           { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
           { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
         ],
-        internalType: 'struct IPool.Proof',
+        internalType: 'struct IPool.ZKProof',
         name: 'proof',
         type: 'tuple',
       },
@@ -278,19 +266,6 @@ const abi = [
     type: 'function',
   },
   {
-    inputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '_verifier',
-        type: 'address',
-      },
-    ],
-    name: 'updateVerifier',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
     inputs: [],
     name: 'usdc',
     outputs: [{ internalType: 'contract IERC20', name: '', type: 'address' }],
@@ -312,15 +287,14 @@ const abi = [
     type: 'function',
   },
   {
-    inputs: [],
-    name: 'verifier',
-    outputs: [
-      {
-        internalType: 'contract IVenmoSendVerifier',
-        name: '',
-        type: 'address',
-      },
+    inputs: [
+      { internalType: 'uint256[2]', name: 'a', type: 'uint256[2]' },
+      { internalType: 'uint256[2][2]', name: 'b', type: 'uint256[2][2]' },
+      { internalType: 'uint256[2]', name: 'c', type: 'uint256[2]' },
+      { internalType: 'uint256[31]', name: 'input', type: 'uint256[31]' },
     ],
+    name: 'verifyProof',
+    outputs: [{ internalType: 'bool', name: 'r', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
   },
