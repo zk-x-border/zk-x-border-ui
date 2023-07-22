@@ -4,7 +4,7 @@ import React from 'react';
 
 import NavItem from './NavItem';
 
-import Logo from '~/svg/Logo.svg';
+import EasternUnionLogo from '~/svg/EasternUnionLogo.svg';
 
 const MENU_LIST = [
   { text: 'Home', href: '/' },
@@ -19,7 +19,7 @@ const Navbar = () => {
     <header className='sticky top-0 z-50 bg-white'>
       <nav className='layout flex w-full flex-1 items-center px-4'>
         <Link href='/'>
-          <Logo className='w-16' />
+          <EasternUnionLogo className='w-48' />
         </Link>
         <div className='right-0 flex w-full flex-1 items-center justify-end space-x-8'>
           {MENU_LIST.map((menu) => (

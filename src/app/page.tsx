@@ -26,18 +26,19 @@ export default function HomePage() {
         <title>zk X-Border</title>
       </Head>
       <Navbar />
-      <section className='bg-[#5d6785]'>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          {/* Next.js form with 4 test input text fields */}
-          <Logo className='w-36' />
-          <h1 className='bg-gradient-to-r from-purple-400 to-blue-300 bg-clip-text text-transparent'>
+      <section className='bg-[#020202]'>
+        <div className='layout relative flex min-h-screen flex-col items-center justify-center space-y-4 py-12 text-center'>
+          <div className='rounded-xl bg-white/40 p-10'>
+            <Logo className='w-36' />
+          </div>
+          <h1 className='bg-gradient-to-r from-yellow-500 to-yellow-300 bg-clip-text text-transparent'>
             zk X-Border
           </h1>
-          <div className='mt-2 text-lg font-bold text-gray-800'>
+          <div className='mt-2 text-lg font-bold text-white'>
             Cross-border, zero-knowledge money transfer for cheap
           </div>
           <ButtonLink
-            className='mt-6 rounded-lg border-none bg-gradient-to-r from-blue-300 to-purple-400 px-10 py-4 text-white'
+            className='mt-6 rounded-lg border-none bg-gradient-to-r from-yellow-400 to-yellow-500 px-10 py-4 text-white'
             href='/pay'
             variant='dark'
           >
