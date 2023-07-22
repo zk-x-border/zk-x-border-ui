@@ -1,4 +1,27 @@
+import { useEffect, useState } from 'react';
+import { number, object, string } from 'yup';
+
 import Arrow from '~/svg/Arrow.svg';
+
+const transferSchema = object({
+  senderType: string().oneOf(['Venmo', 'Revolut']).required(),
+  receiverType: string().oneOf(['Venmo', 'Revolut']).required(),
+  senderCurrency: string().oneOf(['USD', 'EUR']).required(),
+  receiverCurrency: string().oneOf(['USD', 'EUR']).required(),
+  senderIdentifier: string().required(),
+  receiverIdentifier: string().required(),
+  amount: number()
+    .required()
+    .typeError('Must be a number')
+    .required('This field is required')
+    .min(0, 'Must be greater than or equal to 0')
+    .max(10000, 'Must be less than or equal to 10,000')
+    .test(
+      'is-float-with-2-decimal-digits',
+      'Must be a numerical float with exactly two decimal digits',
+      (value) => /^\d+(\.\d{1,2})?$/.test(`${value}`)
+    ),
+});
 
 export type PayFormStep1Props = {
   senderType?: string;
@@ -41,6 +64,33 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
   onChangeAmount,
   onClickNext,
 }) => {
+  const [valid, setValid] = useState(false);
+
+  useEffect(() => {
+    const validate = async () => {
+      const valid = await transferSchema.isValid({
+        senderType,
+        receiverType,
+        senderCurrency,
+        receiverCurrency,
+        senderIdentifier,
+        receiverIdentifier,
+        amount,
+      });
+
+      setValid(valid);
+    };
+    validate();
+  }, [
+    senderType,
+    receiverType,
+    senderCurrency,
+    receiverCurrency,
+    senderIdentifier,
+    receiverIdentifier,
+    amount,
+  ]);
+
   return (
     <div>
       <div className='relative flex flex-1 space-x-2 rounded-lg border border-gray-300 px-6 pb-6 pt-8 shadow-2xl'>
@@ -55,8 +105,8 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             onChange={onChangeSenderType}
           >
             <option>Type</option>
-            <option value='venmo'>Venmo</option>
-            <option value='revolut'>Revolut</option>
+            <option value='Venmo'>Venmo</option>
+            <option value='Revolut'>Revolut</option>
           </select>
         </div>
         <div className='relative w-[50%]'>
@@ -90,8 +140,8 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             onChange={onChangeSenderCurrency}
           >
             <option>Currency</option>
-            <option value='usd'>$ USD</option>
-            <option value='eur'>€ EUR</option>
+            <option value='USD'>$ USD</option>
+            <option value='EUR'>€ EUR</option>
           </select>
         </div>
       </div>
@@ -111,8 +161,8 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
               onChange={onChangeReceiverType}
             >
               <option>Type</option>
-              <option value='venmo'>Venmo</option>
-              <option value='revolut'>Revolut</option>
+              <option value='Venmo'>Venmo</option>
+              <option value='Revolut'>Revolut</option>
             </select>
           </div>
           <div className='relative w-[50%]'>
@@ -147,14 +197,15 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
               onChange={onChangeReceiverCurrency}
             >
               <option>Currency</option>
-              <option value='usd'>$ USD</option>
-              <option value='eur'>€ EUR</option>
+              <option value='USD'>$ USD</option>
+              <option value='EUR'>€ EUR</option>
             </select>
           </div>
         </div>
       </div>
       <button
-        className='mt-4 w-full rounded-md bg-gray-800 p-2 text-white'
+        disabled={!valid}
+        className='mt-4 w-full rounded-md bg-gray-800 p-2 text-white disabled:bg-gray-400'
         onClick={onClickNext}
       >
         Next
