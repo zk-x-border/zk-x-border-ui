@@ -2,6 +2,8 @@
 
 import React, { ChangeEvent, useCallback, useState } from 'react';
 
+import { usePoolContracts } from '@/hooks/usePoolContracts';
+
 import Navbar from '@/components/NavBar';
 import PayFormStep1 from '@/components/payForm/PayFormStep1';
 import PayFormStep2 from '@/components/payForm/PayFormStep2';
@@ -134,11 +136,16 @@ export default function PayPage() {
     senderType,
   ]);
 
+  const { usdcPoolContract } = usePoolContracts();
+
+  // eslint-disable-next-line no-console
+  console.log(usdcPoolContract);
+
   return (
     <main>
       <Navbar />
       <section className='bg-[#5d6785]'>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
+        <div className='layout relative flex min-h-screen flex-col items-center justify-center pb-12 text-center'>
           <div className='flex w-[80%] flex-col space-y-4'>
             {renderCurrentPage()}
           </div>

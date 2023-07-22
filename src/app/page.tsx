@@ -27,7 +27,7 @@ export default function HomePage() {
       </Head>
       <Navbar />
       <section className='bg-[#020202]'>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center space-y-4 py-12 text-center'>
+        <div className='layout relative flex min-h-screen flex-col items-center justify-center space-y-4 pb-12 text-center'>
           <div className='rounded-xl bg-white/40 p-10'>
             <Logo className='w-36' />
           </div>
