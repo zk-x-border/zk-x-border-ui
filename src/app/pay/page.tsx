@@ -6,8 +6,9 @@ import Navbar from '@/components/NavBar';
 import PayFormStep1 from '@/components/payForm/PayFormStep1';
 import PayFormStep2 from '@/components/payForm/PayFormStep2';
 import PayFormStep3 from '@/components/payForm/PayFormStep3';
+import PayFormStep4 from '@/components/payForm/PayFormStep4';
 
-export default function ComponentPage() {
+export default function PayPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [senderType, setSenderType] = useState<string | undefined>(undefined);
   const [receiverType, setReceiverType] = useState<string | undefined>(
@@ -110,6 +111,8 @@ export default function ComponentPage() {
             onClickNext={() => setCurrentPage((prevPage) => prevPage + 1)}
           />
         );
+      case 4:
+        return <PayFormStep4 receiverIdentifier={receiverIdentifier} />;
       default:
         return null;
     }

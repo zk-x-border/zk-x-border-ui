@@ -2,14 +2,10 @@ import { Metadata } from 'next';
 import * as React from 'react';
 
 export const metadata: Metadata = {
-  title: 'Components',
-  description: 'Pre-built components with awesome default',
+  title: 'Pay',
+  description: 'Effortless cross-border, zero-knowledge transfers',
 };
 
-export default function ComponentsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PayLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

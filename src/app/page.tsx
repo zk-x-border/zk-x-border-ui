@@ -30,13 +30,18 @@ export default function HomePage() {
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           {/* Next.js form with 4 test input text fields */}
           <Logo className='w-36' />
-          <h1>zk X-Border</h1>
+          <h1 className='bg-gradient-to-r from-purple-400 to-blue-300 bg-clip-text text-transparent'>
+            zk X-Border
+          </h1>
+          <div className='mt-2 text-lg font-bold text-gray-800'>
+            Cross-border, zero-knowledge money transfer for cheap
+          </div>
           <ButtonLink
-            className='mt-6 rounded-lg border-none bg-gray-800 px-10 py-4 text-white'
+            className='mt-6 rounded-lg border-none bg-gradient-to-r from-blue-300 to-purple-400 px-10 py-4 text-white'
             href='/pay'
             variant='dark'
           >
-            Pay
+            Get Started
           </ButtonLink>
         </div>
       </section>
