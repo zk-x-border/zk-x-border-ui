@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { GrCloudUpload, GrDocument } from 'react-icons/gr';
@@ -49,7 +50,13 @@ const PayFormStep3: React.FC<PayFormStep3Props> = ({ onClickNext }) => {
         )}
       </Dropzone>
       <button
-        className='mt-4 w-full rounded-md bg-gray-800 p-2 text-white'
+        className={clsx(
+          'mt-8 w-full rounded-md p-2 text-white',
+          acceptedFileNames?.length &&
+            'bg-gradient-to-r from-yellow-400 to-yellow-500',
+          !acceptedFileNames?.length && 'disabled:bg-gray-400'
+        )}
+        disabled={!!acceptedFileNames?.length}
         onClick={onClickNext}
       >
         Next

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { number, object, string } from 'yup';
 
@@ -65,6 +66,7 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
   onClickNext,
 }) => {
   const [valid, setValid] = useState(false);
+  const [amountEstimate, _setAmountEstimate] = useState(0);
 
   useEffect(() => {
     const validate = async () => {
@@ -93,7 +95,7 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
 
   return (
     <div>
-      <div className='relative flex flex-1 space-x-2 rounded-lg border border-gray-300 px-6 pb-6 pt-8 shadow-2xl'>
+      <div className='relative flex flex-1 space-x-2 rounded-lg border border-gray-300 px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
         <div className='absolute left-0 top-[-24px] text-sm font-semibold text-white'>
           Sender
         </div>
@@ -129,7 +131,7 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             onChange={onChangeAmount}
             type='number'
             value={amount}
-            placeholder='12.34'
+            placeholder='i.e. 12.34'
           />
         </div>
         <div className='w-[15%]'>
@@ -140,15 +142,15 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             onChange={onChangeSenderCurrency}
           >
             <option>Currency</option>
-            <option value='USD'>$ USD</option>
-            <option value='EUR'>€ EUR</option>
+            <option value='USD'>USD $</option>
+            <option value='EUR'>EUR €</option>
           </select>
         </div>
       </div>
       <div className='my-2 flex flex-1 justify-center'>
         <Arrow className='w-6 text-white' />
       </div>
-      <div className='relative rounded-lg border border-gray-300 px-6 pb-6 pt-8 shadow-2xl'>
+      <div className='relative rounded-lg border border-gray-300 bg-clip-padding px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
         <div className='absolute left-0 top-[-24px] text-sm font-semibold text-white'>
           Receiver
         </div>
@@ -185,8 +187,8 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             <input
               className='w-full rounded-md border border-gray-300 bg-slate-300 p-2'
               type='text'
+              value={amountEstimate}
               disabled
-              placeholder='12.34'
             />
           </div>
           <div className='relative w-[15%]'>
@@ -197,15 +199,19 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
               onChange={onChangeReceiverCurrency}
             >
               <option>Currency</option>
-              <option value='USD'>$ USD</option>
-              <option value='EUR'>€ EUR</option>
+              <option value='USD'>USD $</option>
+              <option value='EUR'>EUR €</option>
             </select>
           </div>
         </div>
       </div>
       <button
         disabled={!valid}
-        className='mt-4 w-full rounded-md bg-gray-800 p-2 text-white disabled:bg-gray-400'
+        className={clsx(
+          'mt-8 w-full rounded-md p-2 text-white',
+          valid && 'bg-gradient-to-r from-yellow-400 to-yellow-500',
+          !valid && 'disabled:bg-gray-400'
+        )}
         onClick={onClickNext}
       >
         Next

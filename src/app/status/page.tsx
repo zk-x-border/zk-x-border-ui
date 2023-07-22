@@ -9,7 +9,7 @@ export default function StatusPage() {
   return (
     <main>
       <Navbar />
-      <section className='bg-[#5d6785]'>
+      <section className='bg-[#020202]'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-start py-12 text-center'>
           <div className='flex w-[80%] flex-col space-y-4'>
             <TransactionTable

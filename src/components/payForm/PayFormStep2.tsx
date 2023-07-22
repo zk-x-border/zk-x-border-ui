@@ -24,7 +24,7 @@ const PayFormStep2: React.FC<PayFormStep2Props> = ({
       </div>
       <div className='relative flex flex-col items-center justify-center space-x-2 rounded-lg border border-gray-300 bg-slate-100/40 px-6 pb-4 pt-6'>
         <div className='mb-[-40px] mt-12'>
-          {senderType === 'revolut' ? (
+          {senderType === 'Revolut' ? (
             <RevolutLogo className='w-24' />
           ) : (
             <VenmoLogo className='w-60' />
@@ -40,7 +40,7 @@ const PayFormStep2: React.FC<PayFormStep2Props> = ({
         </div>
       </div>
       <button
-        className='mt-4 w-full rounded-md bg-gray-800 p-2 text-white'
+        className='mt-4 w-full rounded-md bg-gradient-to-r from-yellow-400 to-yellow-500 p-2 text-white'
         onClick={onClickNext}
       >
         Next
