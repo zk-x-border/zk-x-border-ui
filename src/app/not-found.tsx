@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import * as React from 'react';
 import { RiAlarmWarningFill } from 'react-icons/ri';
 
+import Navbar from '@/components/NavBar';
+
 export const metadata: Metadata = {
   title: 'Not Found',
 };
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <main>
+      <Navbar />
       <section className='bg-white'>
         <div className='layout flex min-h-screen flex-col items-center justify-center text-center text-black'>
           <RiAlarmWarningFill

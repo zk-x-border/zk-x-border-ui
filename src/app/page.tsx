@@ -15,10 +15,6 @@ import Navbar from '@/components/NavBar';
  */
 import Logo from '~/svg/Logo.svg';
 
-// !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
-// Before you begin editing, follow all comments with `STARTERCONF`,
-// to customize the default configuration.
-
 export default function HomePage() {
   return (
     <main>
@@ -28,7 +24,7 @@ export default function HomePage() {
       <Navbar />
       <section className='bg-[#020202]'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center space-y-4 pb-12 text-center'>
-          <div className='rounded-xl bg-white/40 p-10'>
+          <div className='rounded-xl bg-white/40 p-10 shadow-2xl'>
             <Logo className='w-36' />
           </div>
           <h1 className='bg-gradient-to-r from-yellow-500 to-yellow-300 bg-clip-text text-transparent'>
