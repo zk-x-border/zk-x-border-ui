@@ -107,14 +107,18 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
         Number(amount) &&
         Number(amount) > 0
       ) {
+        const sendAmount = (ethers.toBigInt(
+          Math.round(Number(Number(amount).toFixed(2)) * 100) || 0
+        ) *
+          ethers.toBigInt('1000000')) /
+          ethers.toBigInt('100');
+        console.log(sendAmount);
+
         const response = await usdcPoolContract.matchOrder.staticCall(
-          (ethers.toBigInt(
-            Math.round(Number(Number(amount).toFixed(2)) * 100) || 0
-          ) *
-            ethers.toBigInt('1000000')) /
-            ethers.toBigInt('100')
+          sendAmount
         );
 
+        console.log(response)
         const amountEstimate = (
           (ethers.toBigInt(response[2]) * ethers.toBigInt(100)) /
           ethers.toBigInt('1000000000000000000')

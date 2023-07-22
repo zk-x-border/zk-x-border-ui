@@ -10,23 +10,23 @@ import TransactionTable, { Transaction } from '@/components/TransactionTable';
 
 export default function StatusPage() {
   const [orders, setOrders] = React.useState<Transaction[]>([]);
-  const { euroPoolContract, signer, provider } = usePoolContracts();
+  const { usdcPoolContract, signer, provider } = usePoolContracts();
 
   useEffect(() => {
     const fetchOrders = async () => {
-      if (signer && provider && euroPoolContract && orders.length === 0) {
-        const numOrders = await euroPoolContract?.numOrders.staticCall();
+      if (signer && provider && usdcPoolContract && orders.length === 0) {
+        const numOrders = await usdcPoolContract?.numOrders.staticCall();
 
         const tempOrders: Transaction[] = [];
 
         for (let i = 1; i < numOrders; i++) {
-          const order = await euroPoolContract?.orders.staticCall(i);
+          const order = await usdcPoolContract?.orders.staticCall(i);
           tempOrders.push({
             id: order.id,
             amount: Number(
               (
                 (ethers.toBigInt(order.amount) * ethers.toBigInt(100)) /
-                ethers.toBigInt('1000000')
+                ethers.toBigInt('1000000') / ethers.toBigInt(100)
               ).toString()
             ),
             currency: 'USD',
@@ -39,7 +39,7 @@ export default function StatusPage() {
       }
     };
     fetchOrders();
-  }, [euroPoolContract, orders, provider, signer]);
+  }, [usdcPoolContract, orders, provider, signer]);
 
   return (
     <main className='bg-[#020202]'>
