@@ -22,7 +22,7 @@ const PayFormStep2: React.FC<PayFormStep2Props> = ({
         Please pay {amount} {senderCurrency} to MARKET_MAKER_ID on {senderType}{' '}
         and upload the {senderType} email proof in the next step
       </div>
-      <div className='relative flex flex-col items-center justify-center space-x-2 rounded-lg border border-gray-300 bg-slate-100/40 px-6 pb-4 pt-6'>
+      <div className='relative flex flex-col items-center justify-center space-x-2 rounded-lg border border-yellow-300 bg-slate-100/40 px-6 pb-4 pt-6'>
         <div className='mb-[-40px] mt-12'>
           {senderType === 'Revolut' ? (
             <RevolutLogo className='w-24' />

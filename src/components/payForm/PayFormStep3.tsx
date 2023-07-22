@@ -26,7 +26,7 @@ const PayFormStep3: React.FC<PayFormStep3Props> = ({ onClickNext }) => {
         {({ getRootProps, getInputProps }) => (
           <div
             {...getRootProps()}
-            className='relative flex flex-1 justify-center space-x-2 rounded-lg border border-gray-300 bg-gray-500/50 px-6 py-40'
+            className='relative flex flex-1 justify-center space-x-2 rounded-lg border border-yellow-300 bg-gray-500/50 px-6 py-40'
           >
             <input {...getInputProps()} />
             <section>
