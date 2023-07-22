@@ -12,6 +12,7 @@ const MENU_LIST = [
   { text: 'Home', href: '/' },
   { text: 'Pay', href: '/pay' },
   { text: 'Status', href: '/status' },
+  { text: 'Trade', href: '/trade' },
 ];
 
 const Navbar = () => {
