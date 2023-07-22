@@ -15,12 +15,12 @@ export const usePoolContracts = () => {
 
   const usdcPoolContract = new ethers.Contract(
     USDC_POOL_CONTRACT_ADDRESS,
-    JSON.stringify(USDCPoolABI),
+    JSON.stringify(USDCPoolABI.abi),
     provider
   );
   const euroPoolContract = new ethers.Contract(
     EURO_POOL_CONTRACT_ADDRESS,
-    JSON.stringify(EuroPoolABI),
+    JSON.stringify(EuroPoolABI.abi),
     provider
   );
 
