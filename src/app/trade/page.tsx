@@ -35,6 +35,50 @@ export default function TradePage() {
                 <h1 className='text-4xl font-bold text-white'>Trade</h1>
                 <Web3Button />
               </div>
+              <div className='relative mt-8 flex flex-1 space-x-2 rounded-lg border border-yellow-300 px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
+                <div className='relative w-[15%]'>
+                  <select
+                    id='senderType'
+                    className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                  >
+                    <option>Type</option>
+                    <option value='Venmo'>Venmo</option>
+                    <option value='Revolut'>Revolut</option>
+                  </select>
+                </div>
+                <div className='relative w-[50%]'>
+                  <div className='absolute top-[-24px] text-sm text-white'>
+                    Identifier
+                  </div>
+                  <input
+                    name='senderIdentifier'
+                    className='w-full rounded-md border border-gray-300 p-2'
+                    type='text'
+                    placeholder='(i.e. alice@gmail.com)'
+                  />
+                </div>
+                <div className='relative w-[20%]'>
+                  <div className='absolute top-[-24px] text-sm text-white'>
+                    Amount
+                  </div>
+                  <input
+                    className='w-full rounded-md border border-gray-300 p-2'
+                    step='.01'
+                    pattern='^\d*(\.\d{0,2})?$'
+                    placeholder='i.e. 12.34'
+                  />
+                </div>
+                <div className='w-[15%]'>
+                  <select
+                    id='senderCurrency'
+                    className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+                  >
+                    <option>Currency</option>
+                    <option value='USD'>USD $</option>
+                    <option value='EUR'>EUR €</option>
+                  </select>
+                </div>
+              </div>
             </WagmiConfig>
           </div>
         </div>
