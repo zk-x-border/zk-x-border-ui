@@ -21,7 +21,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
         <div className='flex flex-1 items-center justify-center'>
           <div className='flex flex-col items-center justify-center'>
             <div className='text-2xl font-bold text-gray-700 dark:text-gray-200'>
-              No transactions found
+              Loading orders...
             </div>
           </div>
         </div>

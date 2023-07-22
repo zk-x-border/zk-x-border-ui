@@ -29,6 +29,7 @@ export const usePoolContracts = () => {
   );
 
   return {
+    provider,
     usdcPoolContract,
     euroPoolContract,
     signer,
