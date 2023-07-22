@@ -19,7 +19,7 @@ export default function StatusPage() {
 
         const tempOrders: Transaction[] = [];
 
-        for (let i = 1; i <= numOrders; i++) {
+        for (let i = 1; i < numOrders; i++) {
           const order = await euroPoolContract?.orders.staticCall(i);
           tempOrders.push({
             id: order.id,

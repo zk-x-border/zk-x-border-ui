@@ -114,6 +114,7 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
             ethers.toBigInt('1000000')) /
             ethers.toBigInt('100')
         );
+
         const amountEstimate = (
           (ethers.toBigInt(response[2]) * ethers.toBigInt(100)) /
           ethers.toBigInt('1000000000000000000')
