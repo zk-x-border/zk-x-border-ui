@@ -95,7 +95,7 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
 
   return (
     <div>
-      <div className='relative flex flex-1 space-x-2 rounded-lg border border-gray-300 px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
+      <div className='relative flex flex-1 space-x-2 rounded-lg border border-yellow-300 px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
         <div className='absolute left-0 top-[-24px] text-sm font-semibold text-white'>
           Sender
         </div>
@@ -148,9 +148,9 @@ const PayFormStep1: React.FC<PayFormStep1Props> = ({
         </div>
       </div>
       <div className='my-2 flex flex-1 justify-center'>
-        <Arrow className='w-6 text-white' />
+        <Arrow className='w-6' />
       </div>
-      <div className='relative rounded-lg border border-gray-300 bg-clip-padding px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
+      <div className='relative rounded-lg border border-yellow-300 bg-clip-padding px-6 pb-6 pt-8 shadow-md shadow-yellow-300'>
         <div className='absolute left-0 top-[-24px] text-sm font-semibold text-white'>
           Receiver
         </div>

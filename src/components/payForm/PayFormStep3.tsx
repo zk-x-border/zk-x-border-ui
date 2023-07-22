@@ -52,11 +52,11 @@ const PayFormStep3: React.FC<PayFormStep3Props> = ({ onClickNext }) => {
       <button
         className={clsx(
           'mt-8 w-full rounded-md p-2 text-white',
-          acceptedFileNames?.length &&
+          Boolean(acceptedFileNames?.length) &&
             'bg-gradient-to-r from-yellow-400 to-yellow-500',
-          !acceptedFileNames?.length && 'disabled:bg-gray-400'
+          Boolean(!acceptedFileNames?.length) && 'disabled:bg-gray-400'
         )}
-        disabled={!!acceptedFileNames?.length}
+        disabled={Boolean(!acceptedFileNames?.length)}
         onClick={onClickNext}
       >
         Next
