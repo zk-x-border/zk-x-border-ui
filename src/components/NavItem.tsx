@@ -10,7 +10,9 @@ export type NavItemProps = {
 const NavItem: React.FC<NavItemProps> = ({ text, href, active }) => {
   return (
     <Link href={href}>
-      <div className={clsx([active && 'font-bold'])}>{text}</div>
+      <div className={clsx([active && 'font-bold text-yellow-500'])}>
+        {text}
+      </div>
     </Link>
   );
 };
