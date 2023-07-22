@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main>
+    <main className='bg-[#020202]'>
       <Navbar />
       <section className='bg-[#020202]'>
         <div className='layout flex min-h-screen flex-col items-center justify-center text-center text-white'>
