@@ -26,7 +26,8 @@ export default function StatusPage() {
             amount: Number(
               (
                 (ethers.toBigInt(order.amount) * ethers.toBigInt(100)) /
-                ethers.toBigInt('1000000') / ethers.toBigInt(100)
+                ethers.toBigInt('1000000') /
+                ethers.toBigInt(100)
               ).toString()
             ),
             currency: 'USD',
