@@ -142,10 +142,10 @@ export default function PayPage() {
   console.log(usdcPoolContract);
 
   return (
-    <main>
+    <main className='bg-[#020202]'>
       <Navbar />
       <section className='bg-[#020202]'>
-        <div className='layout relative flex min-h-screen flex-col items-center justify-center pb-12 text-center'>
+        <div className='layout relative flex min-h-screen flex-col items-center py-24 text-center'>
           <div className='flex w-[80%] flex-col space-y-4'>
             {renderCurrentPage()}
           </div>

@@ -7,7 +7,7 @@ import TransactionTable from '@/components/TransactionTable';
 
 export default function StatusPage() {
   return (
-    <main>
+    <main className='bg-[#020202]'>
       <Navbar />
       <section className='bg-[#020202]'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-start py-12 text-center'>

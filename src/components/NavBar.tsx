@@ -18,7 +18,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className='sticky top-0 z-50 bg-white'>
+    <header className='sticky top-0 z-50 bg-transparent'>
       <nav className='layout flex w-full flex-1 items-center px-4'>
         <Link href='/'>
           <EasternUnionLogo className='w-48' />
